@@ -7,7 +7,8 @@
     "dev": "snowpack dev",
     "build": "snowpack build",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.0",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "snowpack": "^3.8.6",
@@ -34,7 +36,6 @@
     "tailwindcss": "^2.2.7"
   },
   "dependencies": {
-    "@snowpack/plugin-typescript": "^1.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",

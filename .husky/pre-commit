@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm test
+echo Formatting
+npm run format
+# echo Linting
+# npm run lint
+git add .
