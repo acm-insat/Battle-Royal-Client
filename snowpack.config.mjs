@@ -4,9 +4,6 @@ export default {
     public: '/',
     src: '/dist',
   },
-  alias: {
-    shared: './src/shared',
-  },
   packageOptions: {
     types: true,
   },
@@ -17,6 +14,7 @@ export default {
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
   plugins: [
     '@snowpack/plugin-postcss',
+    '@snowpack/plugin-sass',
     [
       '@snowpack/plugin-babel',
       {
