@@ -21,6 +21,8 @@
     |   +-- shared
     |   |   |   +-- utils.ts : Shared Helper Functions
     |   |   |   +-- queries.ts : GraphQL Queries
+    |   |   |   +-- ui
+    |   |   |   |   +-- Here you put UI kit Components
     |   |   |   +-- components
     |   |   |   |   +-- Here you put Shared Components
     |   |   |   +-- Other Helpers
@@ -29,3 +31,4 @@
 ## Todos
 
 - Add Subscription Support
+- Create the UI Kit
