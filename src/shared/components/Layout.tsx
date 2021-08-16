@@ -4,9 +4,9 @@ import Footer from './Footer'
 const Layout = (props: Props) => {
   const { children } = props
   return (
-    <div className="font-sans">
+    <div className="bg-dark-1 min-h-screen">
       <Navbar />
-      <main>{children}</main>
+      <main className="w-3/5 mx-auto">{children}</main>
       <Footer />
     </div>
   )

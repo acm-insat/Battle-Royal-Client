@@ -7,6 +7,9 @@ export default {
   packageOptions: {
     types: true,
   },
+  alias: {
+    shared: './src/shared',
+  },
   devOptions: {
     port: 666,
     tailwindConfig: './tailwind.config.js',
