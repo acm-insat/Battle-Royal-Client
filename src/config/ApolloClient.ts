@@ -1,6 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { getHeader } from '../shared/utils'
+import { getHeader } from '../shared/helpers'
 
 const httpLink = createHttpLink({
   uri: 'https://48p1r2roz4.sse.codesandbox.io',
