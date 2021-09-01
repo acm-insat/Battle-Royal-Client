@@ -1,22 +1,12 @@
-import Button from '../ui/Button'
+import { Button } from '../ui'
 
 const Navbar = () => {
-  const isLoggedIn = false
+  /*
+
+    const isLoggedIn = false
   const isAdmin = false
-
-  return (
-    <div className="bg-red-1 shadow-md">
-      <nav className="w-4/5 mx-auto py-2 h-auto flex items-center">
-        <Button href="/" className="font-bold">
-          ACM | Battle Royal
-        </Button>
-
-        <Button
-          className="text-opacity-50 hover:text-opacity-100"
-          href="/problemset"
-        >
-          Problemset
-        </Button>
+  
+    
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/scoreboard"
@@ -59,6 +49,21 @@ const Navbar = () => {
         </Button>
         <Button href="/login" contained show={isLoggedIn}>
           Logout
+        </Button>
+  */
+
+  return (
+    <div className="bg-primary-1 shadow-md">
+      <nav className="w-4/5 mx-auto py-2 h-auto flex items-center">
+        <Button href="/" className="font-bold">
+          ACM | Battle Royal
+        </Button>
+
+        <Button
+          className="text-opacity-50 hover:text-opacity-100"
+          href="/register"
+        >
+          Register
         </Button>
       </nav>
     </div>

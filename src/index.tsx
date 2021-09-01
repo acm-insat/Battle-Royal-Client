@@ -1,8 +1,17 @@
 import { render } from 'react-dom'
 import { StrictMode } from 'react'
 import App from './app'
-import client from './config/ApolloClient'
-import { ApolloProvider } from '@apollo/client'
+// import client from './config/ApolloClient'
+// import { ApolloProvider } from '@apollo/client'
+
+render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById('app')
+)
+
+/*
 
 render(
   <StrictMode>
@@ -12,3 +21,6 @@ render(
   </StrictMode>,
   document.getElementById('app')
 )
+
+  
+*/

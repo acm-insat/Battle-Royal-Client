@@ -6,7 +6,12 @@ const Layout = (props: Props) => {
   return (
     <div className="bg-dark-1 min-h-screen">
       <Navbar />
-      <main className="w-3/5 mx-auto">{children}</main>
+      <main
+        className="w-full px-4 md:w-3/5 h-full mx-auto"
+        style={{ height: 'calc(100vh - 5rem)' }}
+      >
+        {children}
+      </main>
       <Footer />
     </div>
   )

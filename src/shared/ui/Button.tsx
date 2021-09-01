@@ -1,18 +1,16 @@
 import { Link } from 'react-router-dom'
 
-const styles = (contained: boolean = false, className: string = '') => {
-  return `
-    w-30 h-10 px-3 grid place-items-center duration-300 text-white
-        ${
-          contained &&
-          `
-             bg-red-2 rounded-md shadow  
-             hover:shadow-xl hover:bg-red-4 
-            
-            `
-        }
-    ${className}
-    `
+const styles = (
+  disabled,
+  contained: boolean = false,
+  className: string = ''
+) => {
+  let base = 'w-30 h-10 px-3 grid place-items-center duration-300 text-white '
+  if (contained) base += 'bg-primary-2 rounded-md '
+  if (disabled) base += 'opacity-20 cursor-not-allowed '
+  if (contained && !disabled)
+    base += 'shadow hover:shadow-xl hover:bg-primary-4 '
+  return base + className
 }
 
 const Button = (props: Props) => {
@@ -31,7 +29,7 @@ const Button = (props: Props) => {
 
   if (href)
     return (
-      <Link to={href} className={styles(contained, className)}>
+      <Link to={href} className={styles(disabled, contained, className)}>
         {children}
       </Link>
     )
@@ -41,7 +39,7 @@ const Button = (props: Props) => {
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={styles(contained, className)}
+      className={styles(disabled, contained, className)}
     >
       {children}
     </button>
@@ -53,10 +51,11 @@ type Props = {
   children: any
   contained?: boolean
   className?: string
+  style?: any
   show?: boolean
   disabled?: boolean
   onClick?: () => void
-  type?: 'button' | 'submit' | 'reset'
+  type?: 'submit' | 'reset' | 'button'
 }
 
 export default Button

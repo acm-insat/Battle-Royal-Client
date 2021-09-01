@@ -7,8 +7,9 @@ module.exports = {
         dark: {
           1: '#050100',
           2: '#282424',
+          3: '#3b3b3b'
         },
-        red: {
+        primary: {
           1: '#7B071C',
           2: '#CB0101',
           3: '#F14A03',
@@ -18,6 +19,5 @@ module.exports = {
     },
   },
   variants: {
-    backgroundColor: ({ after }) => after(['disabled']),
   },
 }
