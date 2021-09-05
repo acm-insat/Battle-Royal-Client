@@ -56,7 +56,7 @@ const Navbar = () => {
     <div className="bg-primary-1 shadow-md">
       <nav className="w-4/5 mx-auto py-2 h-auto flex items-center">
         <Button href="/" className="font-bold">
-          ACM | Battle Royal
+          ACM | Battle Royale
         </Button>
 
         <Button
