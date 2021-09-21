@@ -13,8 +13,8 @@ import { makeRule } from 'shared/helpers'
 export const teamname = {
   required: makeRule(true, 'Team name is required'),
   pattern: makeRule(
-    /^[a-zA-Z0-9-_]+$/,
-    'Username should contain only letters, numbers, dashes and underscores'
+      /^[a-zA-Z0-9-_]+$/,
+      'Team name can only contain letters, numbers, dashes and underscores'
   ),
 }
 

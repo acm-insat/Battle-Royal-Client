@@ -9,11 +9,11 @@ const Card = (props: Props) => {
   }
   return (
     <div className="text-white my-10 p-7 w-full rounded-xl h-auto bg-dark-2 shodow hover:shadow-xl duration-300">
-      <div className="flex items-center px-3">
+      {title && <div className="px-2 py-20 text-center block">
         <Header />
       </div>
+      }
       <div className="py-4">
-        <hr />
       </div>
       {children}
     </div>

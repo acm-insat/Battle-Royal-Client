@@ -1,15 +1,22 @@
 import { forwardRef } from 'react'
 
 const Select = forwardRef((props: Props, ref) => {
-  const { onChange, onBlur, defaultValue, options, name, ...rest } = props
+  const { onBlur, defaultValue, title, options, name, selectedvalue, ...rest } = props
+
+  const handleChange = (e) => {
+    selectedvalue(e.target.value);
+    console.log("test ",e.target.value)
+  }
+
   return (
     <div className="p-1">
-      <label className="font-medium uppercase" htmlFor={name}>
-        {name}
+      {title && <label className="font-medium uppercase" htmlFor={name}>
+        {title}
       </label>
+      }
       <select
         name={name}
-        onChange={onChange}
+        onChange={e=>handleChange(e)}
         onBlur={onBlur}
         ref={ref}
         {...rest}

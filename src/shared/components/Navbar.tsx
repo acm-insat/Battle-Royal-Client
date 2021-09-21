@@ -58,13 +58,43 @@ const Navbar = () => {
         <Button href="/" className="font-bold">
           ACM | Battle Royale
         </Button>
+        <div className="w-3/5	flex float-left">
+        <Button
+          className="text-opacity-50 hover:text-opacity-100"
+          href="/problemset"
+        >
+          Problemset
+        </Button>
+        <Button
+          className="text-opacity-50 hover:text-opacity-100"
+          href="/submissions"
+        >
+          Submissions
+        </Button>
+        <Button
+          className="text-opacity-50 hover:text-opacity-100"
+          href="/leaderboard"
+        >
+          Leaderboard
+        </Button>
+</div>
 
+<div className="w-1/5	flex float-right">
+<Button
+          className="text-opacity-50 hover:text-opacity-100"
+          href="/login"
+        >
+          Login
+        </Button>
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/register"
-        >
-          Register
+        outlined >
+          Register Team
         </Button>
+</div>
+        
+
       </nav>
     </div>
   )

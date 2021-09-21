@@ -1,4 +1,5 @@
 const Loading = ({ className }: { className?: string }) => (
+  <div className="bg-dark-1 w-full h-screen">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -115,6 +116,7 @@ const Loading = ({ className }: { className?: string }) => (
       ></animate>
     </circle>
   </svg>
+  </div>
 )
 
 export default Loading

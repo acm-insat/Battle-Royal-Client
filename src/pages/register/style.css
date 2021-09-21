@@ -36,10 +36,10 @@
     width: 1.5em;
     height: 1.5em;
     border-radius: 0.25em;
-    border: 0.125em solid #FE6D00;
+    border: 0.125em solid rgb(203,1,1);
   }
   .box-subtitle input:checked + label {
-    color: #FE6D00;
+    color: rgb(203,1,1);
   }
   
   .box-subtitle label::after {
@@ -49,7 +49,7 @@
     top: 0.375em;
     left: 0.375em;
     border-radius: 0.05em;
-    background-color: #FE6D00;
+    background-color: rgb(203,1,1);
     position: absolute;
     transform: scale(0);
     transition: 0.5s transform ease;
@@ -57,23 +57,3 @@
   .box-subtitle input:checked + label::after {
     transform: scale(1);
   }
-
-  .oaerror{
-    width:100%;
-    background-color: transparent;
-    padding:20px;
-    border-left-width:5px;
-    border-radius: 3px;
-    margin:10px auto;
-    font-size: 16px;
-  }
-  
-  .danger{
-    border-left-color: #d9534f; /* Left side border color */
-    background-color: rgba(217, 83, 79, 0.1); /*Same color as the left border with reduced alpha to 0.1*/
-  }
-  
-  .danger strong{
-    color:#d9534f;
-  }
-  

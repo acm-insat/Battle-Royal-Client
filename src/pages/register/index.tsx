@@ -1,4 +1,4 @@
-import { Card, Button, Input, Select } from 'shared/ui'
+import { Card, FullButton, Input, Error } from 'shared/ui'
 import { useForm } from 'react-hook-form'
 import * as validators from './validate'
 import { getFormErrors } from 'shared/helpers'
@@ -63,8 +63,6 @@ const Register = () => {
   };
 
   return (
-    <div>
-      Home
       <Card title="Battle Royale Team Registartion">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -141,30 +139,23 @@ const Register = () => {
         })}
         <div id="errs">
         {inputList.length < 2 &&
-        <div className="oaerror danger">
-          <strong>Error</strong>- Your Team must have at least a leader and a member.
-        </div>
+        <Error msg="Your Team must have at least a leader and a member."/>
         }
         {inputList.length > 3 &&
-        <div className="oaerror danger">
-          <strong>Error</strong>- Your Team must have at most a leader and two members.
-        </div>
+        <Error msg="Your Team must have at most a leader and two members."/>
         }
         {teamName === '' &&
-        <div className="oaerror danger">
-          <strong>Error</strong>- Team name is a required field.
-        </div>
+        <Error msg="Team name is a required field."/>
         }
         </div>
           <br/>
-          <Button type="submit" contained disabled={inputList.length < 2 || inputList.length > 3 || teamName === ''}>
+          <FullButton type="submit" contained disabled={inputList.length < 2 || inputList.length > 3 || teamName === ''}>
             Register Team
-          </Button>
+          </FullButton>
         </form>
         <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
 
       </Card>
-    </div>
   )
 }
 

@@ -20,8 +20,6 @@ const Home = () => {
   }
 
   return (
-    <div>
-      Home
       <Card title="Something">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -59,7 +57,6 @@ const Home = () => {
           </Button>
         </form>
       </Card>
-    </div>
   )
 }
 
