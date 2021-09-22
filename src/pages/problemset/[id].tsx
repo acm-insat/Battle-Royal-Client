@@ -160,7 +160,7 @@ const Window = ({ relatedtoshowcodearea }) => {
         onChange={e=>setLang(e.target.value)}
         className="appearance-none p-3 rounded-2xl mr-1 ml-1 mt-2 bg-dark-3 mb-5 focus:outline-none cursor-pointer"
       >
-        <option value="">Choose coding lang</option>
+        <option value="">choose-coding-lang</option>
           <option value="cpp">C++</option>
           <option value="c">C</option>
           <option value="java">Java</option>

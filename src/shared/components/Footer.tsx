@@ -1,7 +1,10 @@
+import Sponsors from "./Sponsors"
 const Footer = () => {
-  return <div className="text-dark-2 text-center py-5">
+  return <>
+  <Sponsors />
+  <div className="text-dark-2 text-center py-5">
     Powered by ACM | INSAT &copy; 2021.
-  </div>
+  </div></>
 }
 
 export default Footer

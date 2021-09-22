@@ -1,8 +1,9 @@
 import NewWindow from 'react-new-window'
 import React, { useState } from 'react'
-import Prism from "prismjs";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import styled from "styled-components";
+import { Button } from '.';
+import theme from "prism-react-renderer/themes/vsDark";
 
 const Pre = styled.pre`
   text-align: left;
@@ -69,38 +70,45 @@ const SubmissionRow = (props: Props) => {
 
             </td>
         </tr>
-        {showCode ? <Window relatedShowCode={setShowCode} relatedCode={showCode} relatedLang={lang} /> : null }
+        {showCode ? <Window relatedShowCode={setShowCode} relatedCode={showCode} relatedLang={lang} relatedProblem={problem} /> : null }
         </>
     )
   }
   
-const Window = ({ relatedShowCode, relatedCode, relatedLang }) => {
-    React.useEffect(() => {
-        Prism.highlightAll();
-      }, []);
-    return (
-        <NewWindow onUnload={()=>relatedShowCode(null)}>
-            <div className="bg-dark-2 w-full min-h-full">
-            
-   <Highlight {...defaultProps} code={relatedCode} language={relatedLang}>
-    {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <Pre className={className} style={style}>
-        {tokens.map((line, i) => (
-          <Line key={i} {...getLineProps({ line, key: i })}>
-            <LineNo>{i + 1}</LineNo>
-            <LineContent>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
+const Window = ({ relatedShowCode, relatedCode, relatedLang, relatedProblem }) => {
+  const closePreview=()=>{
+    relatedShowCode(null)
+  }
+  
+  return (
+  <NewWindow onUnload={()=>relatedShowCode(null)}>
+    <div className="bg-dark-2 w-full h-14">
+    <div className="w-4/5 flex float-left text-white my-4">
+    <h2 className="ml-3">{relatedProblem}</h2>
+    </div>
+    <div className="w-1/5 flex float-right">
+    <Button className="block float-right mt-2 mr-2 ml-auto" onClick={()=>closePreview()} outlined>Close</Button>
+    </div>
+      </div>
+      <div className="bg-dark-2 min-h-full">
+        <Highlight {...defaultProps} theme={theme} code={relatedCode} language={relatedLang}>
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <Pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <Line key={i} {...getLineProps({ line, key: i })}>
+                  <LineNo>{i + 1}</LineNo>
+                  <LineContent>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token, key })} />
+                    ))}
+                  </LineContent>
+                </Line>
               ))}
-            </LineContent>
-          </Line>
-        ))}
-      </Pre>
-    )}
-  </Highlight>
-
-            </div>
-        </NewWindow>
+            </Pre>
+          )}
+        </Highlight>
+      </div>
+    </NewWindow>
     )
 }
 
