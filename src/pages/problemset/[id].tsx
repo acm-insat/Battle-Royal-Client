@@ -158,13 +158,18 @@ const Window = ({ relatedtoshowcodearea }) => {
     <select
         name="code-language"
         onChange={e=>setLang(e.target.value)}
-        className="appearance-none p-3 rounded-2xl mr-1 ml-1 mt-2 bg-dark-3 mb-5 focus:outline-none cursor-pointer"
+        className="w-20 appearance-none p-3 rounded-2xl mr-1 ml-1 mt-2 bg-dark-3 mb-5 focus:outline-none cursor-pointer"
+        style={{fontFamily: "Font Awesome 5 Brands"}}
       >
-        <option value="">choose-coding-lang</option>
-          <option value="cpp">C++</option>
-          <option value="c">C</option>
-          <option value="java">Java</option>
-          <option value="python">Python</option>
+          <option value="cpp">
+              C++
+            </option>
+          <option value="c">
+              C
+           </option>
+          <option value="java">
+              Java
+        </option>
       </select>
     <Button onClick={()=>setFontSize(fontSize+1 < 28 ? fontSize+1 : 28)} contained className="mt-3 mr-1"><i className="fas fa-search-plus"></i></Button>
     <Button onClick={()=>setFontSize(fontSize-1 > 8 ? fontSize-1 : 8)} contained className="mt-3"><i className="fas fa-search-minus"></i></Button>

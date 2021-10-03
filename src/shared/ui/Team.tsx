@@ -1,5 +1,14 @@
 const Team = (props: Props) => {
-    const { name, size, username, show=true } = props
+    const { name, size, username, show=true, active } = props
+
+    function stringToBoolean(string:String){
+        switch(string){
+            case "true": case "yes": case "1": return true;
+            case "false": case "no": case "0": case null: case "": return false;
+            default: return Boolean(string);
+        }
+    }
+
     if(!show){
       return (
         <></>
@@ -19,7 +28,15 @@ const Team = (props: Props) => {
     } else {
       return (
           <div className="flex my-2">
-          <img style={{borderRadius: "50%"}} src={"https://ui-avatars.com/api/?name="+name.replace(/ /g,"+")} width="50" height="50"/>
+            <div className="relative">
+              <img style={{borderRadius: "50%"}} src={"https://ui-avatars.com/api/?name="+name.replace(/ /g,"+")} width="50" height="50"/>
+              {stringToBoolean(active)&&<>
+              <div className="bg-green-500 absolute rounded-2xl  bottom-0 right-0 w-4 h-4"></div>
+              </>}
+              {!stringToBoolean(active)&&<>
+              <div className="bg-red-500 absolute rounded-2xl  bottom-0 right-0 w-4 h-4"></div>
+              </>}
+            </div>
           <h4 className="mt-3 ml-2 text-white">{name}</h4>
           </div>
       )

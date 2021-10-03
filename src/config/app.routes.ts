@@ -52,6 +52,11 @@ const routes = [
     roles: [],
   },
   {
+    path: '/admin/announce',
+    component: lazy(() => import('../pages/admin/announce')),
+    roles: [],
+  },
+  {
     path: '/admin',
     component: lazy(() => import('../pages/admin')),
     roles: [],

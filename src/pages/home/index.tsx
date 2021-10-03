@@ -37,18 +37,20 @@ const Home = () => {
       </div>
       <div className="flex-grow-0 w-80">
       <Card title="">
+        <div className="-mt-5">
+      <h1 className="text-2xl">Linus Tech Tips</h1>
         <div className="flex gap-x-2">
-        <h2>Active Teams</h2>
+        <h2>Active Team Members</h2>
         <span className={"bg-white text-black tracking-wide text-xs w-auto inline-block rounded-full py-1 px-2 uppercase"}>{teamsCount}</span>
         </div>
         <br/>
-        <Team name="Linus Tech Tips"/>
-        <Team name="Tech Linked"/>
-        <Team name="Tech Quickie"/>
-        <Team name="Short Circuit"/>
-        <Team name="Channel Super Fun"/>
-        <Team name="LMG Clips"/>
-        <Team name="Linus Cat Tips"/>
+        <Team name="Linus Sebastian" active="true"/>
+        <Team name="Madison Reeve" active="true"/>
+        <Team name="Nicholas Plouffe" active="false"/>
+        <Team name="Anthony Young" active="true"/>
+        <Team name="Alex Clark" active="false"/>
+        <Team name="Riley Murdock" active="true"/>
+        </div>
       </Card>
       </div>
     </div>
