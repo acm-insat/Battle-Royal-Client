@@ -4,9 +4,11 @@ const styles = (
   disabled,
   contained: boolean = false,
   outlined: boolean = false,
-  className: string = ''
+  className: string = '',
+  fullWidth: boolean = false
 ) => {
-  let base = 'w-30 h-10 px-3 grid place-items-center duration-300 text-white '
+  let base = `${fullWidth ? 'w-full' : 'w-30'} h-10 px-3 grid place-items-center duration-300 text-white `
+  
   if (contained) base += 'bg-primary-2 rounded-md '
   if (outlined) base += 'border-2 border-white border-opacity-50 hover:border-opacity-100 rounded-md '
   if (disabled) base += 'opacity-20 cursor-not-allowed '
@@ -25,6 +27,7 @@ const Button = (props: Props) => {
     show = true,
     disabled = false,
     onClick,
+    fullWidth = false,
     type = 'button',
   } = props
 
@@ -32,7 +35,7 @@ const Button = (props: Props) => {
 
   if (href)
     return (
-      <Link to={href} className={styles(disabled, contained, outlined, className)}>
+      <Link to={href} className={styles(disabled, contained, outlined, className, fullWidth)}>
         {children}
       </Link>
     )
@@ -42,12 +45,13 @@ const Button = (props: Props) => {
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={styles(disabled, contained, outlined, className)}
+      className={styles(disabled, contained, outlined, className, fullWidth)}
     >
       {children}
     </button>
   )
 }
+
 
 type Props = {
   href?: string
@@ -55,6 +59,7 @@ type Props = {
   contained?: boolean
   outlined?: boolean
   className?: string
+  fullWidth?: boolean
   style?: any
   show?: boolean
   disabled?: boolean
@@ -63,3 +68,5 @@ type Props = {
 }
 
 export default Button
+
+

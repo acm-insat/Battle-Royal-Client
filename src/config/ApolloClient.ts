@@ -3,7 +3,7 @@ import { setContext } from '@apollo/client/link/context'
 import { getHeader } from '../shared/helpers'
 
 const httpLink = createHttpLink({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  uri: process.env.SNOWPACK_PUBLIC_BACKEND_URL,
 })
 
 const authLink = setContext((_, { headers }) => {

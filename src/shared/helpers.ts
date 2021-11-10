@@ -1,3 +1,5 @@
+import { concat, isArray } from "lodash"
+
 export const getRole = () => {
   return 'FIGHTER'
 }
@@ -16,5 +18,17 @@ export const makeRule = (value: any, message: string = '') => {
   }
 }
 
-export const getFormErrors = (errors: any) =>
-  Object.keys(errors).map(key => errors[key].message)
+export const getFormErrors = (errors) => {
+  let _errors: string[] = []
+  Object.keys(errors).forEach(key => {
+    if (isArray(errors[key])) {
+      _errors = concat(_errors, ...errors[key].map(e => Object.values(e).map(_e => _e.message)))
+    }
+    else _errors = [..._errors, errors[key].message]
+  })
+
+  return _errors
+}
+  
+
+

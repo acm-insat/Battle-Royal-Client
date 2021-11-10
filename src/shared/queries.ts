@@ -7,3 +7,13 @@ export const queryData = (currency: any) => gql`
     }
   }
 `
+
+
+export const register = gql`
+mutation register($team: TeamInput!) {
+  register(team: $team) {
+    message,
+    errors
+  }
+}
+`

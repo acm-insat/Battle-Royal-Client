@@ -13,5 +13,6 @@ import Announcement from './Announcement'
 import Team from './Team'
 import AdminClarification from './AdminClarification'
 import AdminChallenge from './AdminChallenge'
+import Checkbox from './Checkbox'
 
-export { Button, Card, Input, Select, FullButton, Error, TeamPosition, Challenge, CodeArea, Question, SubmissionRow, Announcement, Team, AdminClarification, AdminChallenge }
+export { Button, Card, Checkbox, Input, Select, FullButton, Error, TeamPosition, Challenge, CodeArea, Question, SubmissionRow, Announcement, Team, AdminClarification, AdminChallenge }
