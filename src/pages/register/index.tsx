@@ -20,68 +20,6 @@ const Register = () => {
 
   const [submit, { data, loading }] = useMutation(REGISTER)
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm()
-
-  //
-
-  // console.log({ data, });
-
-  // const [teamName, setTeamName] = React.useState("")
-  // const [onsite, setOnsite] = React.useState(false)
-  // const [inputList, setInputList] = React.useState([{
-  //   fullname: "",
-  //   email: "",
-  //   phone: "",
-  //   isMember: false
-  // }]);
-
-  // const onSubmit = data => {
-  //   const submittedData = {
-  //     name: data.teamname,
-  //     members: inputList.map((x, idx) => ({ ...x, isLeader: idx === 0})),
-  //     onsite
-  //   }
-
-  //
-
-  // }
-
-  // const handleTeamNameChange = (e) => {
-  //   const value = e.target;
-  //   setTeamName(value);
-  // }
-
-  // // handle input change
-  // const handleInputChange = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const list = [...inputList];
-  //   list[index][name] = value;
-  //   setInputList(list);
-  // };
-
-  // const handleCBChange = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const list = [...inputList];
-  //   list[index][name] = e.target.checked;
-  //   setInputList(list);
-  // };
-
-  // // handle click event of the Remove button
-  // const handleRemoveClick = index => {
-  //   const list = [...inputList];
-  //   list.splice(index, 1);
-  //   setInputList(list);
-  // };
-
-  // // handle click event of the Add button
-  // const handleAddClick = () => {
-  //   setInputList([...inputList, { fullname: "", email: "", phone: "", isMember: false }]);
-  // };
-
   const [nbOfMembers, setNbOfMembers] = useState(1)
   const handleMembers = value => {
     const final = nbOfMembers + value
@@ -181,64 +119,8 @@ const Register = () => {
           </Button>
         </form>
       )}
-
-      {/*         
-        
-          
-          
-          {inputList.map((x, i) => {
-        return (
-          <div className="box" key={i} >
-            
-            
-            </div>
-            <div className="p-1">
-              <label className="font-medium uppercase" htmlFor="email">
-                emailaddress
-              </label>
-              <input
-                className="w-full p-3 mt-1 mb-5 bg-dark-3 rounded-2xl focus:outline-none focus:shadow"
-                type="email"
-              name="email"
-              placeholder="member-email-address"
-              value={x.email}
-              onChange={e => handleInputChange(e, i)}
-              />
-            </div>
-
-            <div className="p-1">
-              <label className="font-medium uppercase" htmlFor="phone">
-                phonenumber
-              </label>
-              <input
-                className="w-full p-3 mt-1 mb-5 bg-dark-3 rounded-2xl focus:outline-none focus:shadow"
-                type="phone"
-              name="phone"
-              placeholder="member-phone-number"
-              value={x.phone}
-              onChange={e => handleInputChange(e, i)}
-              />
-            </div>
-          </div>
-          );
-        })}
-        <div id="errs">
-        {inputList.length < 2 &&
-        <Error msg="Your Team must have at least a leader and a member."/>
-        }
-        {inputList.length > 3 &&
-        <Error msg="Your Team must have at most a leader and two members."/>
-        }
-        {teamName === '' &&
-        <Error msg="Team name is a required field."/>
-        }
-        </div>
-          
-        </form>
-        <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
     </Card>
   )
 }
 
 export default Register
-// export default wrapper(queryData('USD'))(App)
