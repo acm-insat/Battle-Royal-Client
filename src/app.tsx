@@ -9,14 +9,11 @@ import { wrapper } from './shared/apollo.utils'
 import { queryData } from 'shared/queries'
 
 const App = (props: any) => {
-   
-    // const {
-    //   data: { loading, error, someRates },
-    // } = props
-    // console.log({ loading, error, someRates })
-  
-    
-  
+  // const {
+  //   data: { loading, error, someRates },
+  // } = props
+  // console.log({ loading, error, someRates })
+
   return (
     <Suspense fallback={<Loading className="w-10 h-10 m-auto" />}>
       <Router>
