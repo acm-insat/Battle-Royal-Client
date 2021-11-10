@@ -1,59 +1,58 @@
 .btn-box {
-    float: right;
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
 
 .box-title {
-    display: flex;
-    margin: 20px 0;
-    align-items: baseline;
+  display: flex;
+  margin: 20px 0;
+  align-items: baseline;
 }
 
 .box-subtitle {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-left: auto;
-    align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  /* margin-left: auto; */
+  margin: 20px 0;
+  align-self: stretch;
+}
+.box-subtitle input {
+  display: none;
+}
+.box-subtitle label {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  transition: 0.5s color ease;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+}
+.box-subtitle label::before {
+  content: '';
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.25em;
+  border: 0.125em solid rgb(203, 1, 1);
+}
+.box-subtitle input:checked + label {
+  color: rgb(203, 1, 1);
+}
 
-  }
-  .box-subtitle input {
-    display: none;
-  }
-  .box-subtitle label {
-    display: flex;
-    gap: 0.5em;
-    align-items: center;
-    transition: 0.5s color ease;
-    white-space: nowrap;
-    cursor: pointer;
-    position: relative;
-  }
-  .box-subtitle label::before {
-    content: "";
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 0.25em;
-    border: 0.125em solid rgb(203,1,1);
-  }
-  .box-subtitle input:checked + label {
-    color: rgb(203,1,1);
-  }
-  
-  .box-subtitle label::after {
-    content: "";
-    width: 0.75em;
-    height: 0.75em;
-    top: 0.375em;
-    left: 0.375em;
-    border-radius: 0.05em;
-    background-color: rgb(203,1,1);
-    position: absolute;
-    transform: scale(0);
-    transition: 0.5s transform ease;
-  }
-  .box-subtitle input:checked + label::after {
-    transform: scale(1);
-  }
+.box-subtitle label::after {
+  content: '';
+  width: 0.75em;
+  height: 0.75em;
+  top: 0.375em;
+  left: 0.375em;
+  border-radius: 0.05em;
+  background-color: rgb(203, 1, 1);
+  position: absolute;
+  transform: scale(0);
+  transition: 0.5s transform ease;
+}
+.box-subtitle input:checked + label::after {
+  transform: scale(1);
+}

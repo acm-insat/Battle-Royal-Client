@@ -97,6 +97,12 @@ const Register = () => {
       {data?.register?.message && <h1>{data?.register?.message}</h1>}
       {!data?.register?.message && (
         <form onSubmit={handleSubmit(onSubmit)}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            aperiam aliquid odio ad aut, dicta quod minima, labore quasi
+            doloremque quibusdam? Iusto, nesciunt at. Consequuntur eos natus
+            earum dicta sequi.
+          </p>
           <br />
 
           <Input
@@ -115,13 +121,13 @@ const Register = () => {
               <div className="box-title">
                 {idx == 0 && <h4>TEAM LEADER</h4>}
                 {idx > 0 && <h4>TEAM MEMBER {idx + 1}</h4>}
-
-                <Checkbox
-                  name={`members.${idx}.isMember`}
-                  label="ACM Member"
-                  register={register}
-                />
               </div>
+
+              <Checkbox
+                name={`members.${idx}.isMember`}
+                label="ACM Member"
+                register={register}
+              />
 
               <Input
                 label="fullname"
@@ -142,6 +148,12 @@ const Register = () => {
                 name={`members.${idx}.phone`}
                 placeholder="his phone"
                 validate={validators.phone(idx + 1)}
+                register={register}
+              />
+              <Input
+                label="university"
+                name={`members.${idx}.university`}
+                placeholder="MIT"
                 register={register}
               />
             </div>
@@ -165,7 +177,7 @@ const Register = () => {
           ))}
 
           <Button type="submit" contained fullWidth disabled={loading}>
-            Register Team
+            {loading ? 'Registering..' : 'Register Team'}
           </Button>
         </form>
       )}
