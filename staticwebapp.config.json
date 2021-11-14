@@ -1,11 +1,12 @@
 {
   "routes": [
     {
-      "route": "/register"
+      "route": "/register",
+      "rewrite":"/"
     },
     {
       "route": "/test",
-      "rewrite":"/"
+      "rewrite":"/lost"
     },
     {
         "route": "/test1/*",
