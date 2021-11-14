@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "route": "/register"
+    },
+    {
+      "route": "/test",
+      "rewrite":"/"
+    },
+    {
+        "route": "/test1/*",
+        "redirect" : "/"
+    }
+    ]
+}
+
