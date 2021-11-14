@@ -7,7 +7,7 @@ module.exports = {
         dark: {
           1: '#050100',
           2: '#282424',
-          3: '#3b3b3b'
+          3: '#3b3b3b',
         },
         primary: {
           1: '#7B071C',
@@ -19,6 +19,6 @@ module.exports = {
       },
     },
   },
-  variants: {
-  },
+  plugins: [],
+  variants: {},
 }

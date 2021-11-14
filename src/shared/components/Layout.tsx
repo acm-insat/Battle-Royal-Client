@@ -7,9 +7,7 @@ const Layout = (props: Props) => {
   return (
     <div className="bg-dark-1 min-h-screen ">
       <Navbar />
-      <main
-        className="w-full px-4 md:w-3/5 mx-auto min-h-full pb-20"
-      >
+      <main className="w-full px-4 md:w-3/5 mx-auto min-h-full pb-20">
         {children}
       </main>
       <Footer />
