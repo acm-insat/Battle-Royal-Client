@@ -1,6 +1,7 @@
 export default {
   env: {},
   mount: {
+    app: '/',
     public: '/',
     src: '/dist',
   },
