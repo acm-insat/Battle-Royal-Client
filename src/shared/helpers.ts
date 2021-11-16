@@ -1,9 +1,5 @@
 import { concat, isArray } from "lodash"
 
-export const getRole = () => {
-  return 'FIGHTER'
-}
-
 export const getHeader = (defaults: any) => ({
   headers: {
     ...defaults,

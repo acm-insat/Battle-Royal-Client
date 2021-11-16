@@ -2,17 +2,22 @@ import { Route, Redirect } from 'react-router-dom'
 import { includes } from 'lodash'
 
 const ProtectedRoute = (props: Props) => {
-  const { currentRole, path, component, roles } = props
-  if (roles.length === 0 || includes(roles, currentRole))
-    return <Route path={path} exact component={component} />
-  return <Redirect to="/lost" />
+  const { path, component, shouldBeloggedIn, isLoggedIn = false } = props
+
+  console.log(path, component, shouldBeloggedIn, isLoggedIn)
+
+  if (!shouldBeloggedIn || (isLoggedIn && shouldBeloggedIn))
+    return <Route exact path={path} component={component} />
+  console.log('nah')
+
+  return null
 }
 
 type Props = {
-  currentRole: string
   path: string
   component: JSX.Element | any
-  roles: string[]
+  isLoggedIn?: Boolean
+  shouldBeloggedIn: Boolean
 }
 
 export default ProtectedRoute

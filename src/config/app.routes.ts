@@ -4,12 +4,12 @@ const routes = [
   {
     path: '/',
     component: lazy(() => import('../pages/home')),
-    roles: [],
+    shouldBeloggedIn: false,
   },
   {
     path: '/404',
     component: lazy(() => import('../pages/lost')),
-    roles: [],
+    shouldBeloggedIn: false,
   },
   /*
   {
@@ -65,4 +65,7 @@ const routes = [
   */
 ]
 
-export default routes
+export default {
+  routes,
+  FourOFour: lazy(() => import('../pages/lost'))
+}

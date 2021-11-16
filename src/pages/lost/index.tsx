@@ -1,6 +1,6 @@
 const Lost = () => {
   return (
-    <div className="text-center text-white h-full flex justify-center items-center">
+    <div className="pt-20 text-center text-white h-full flex justify-center items-center">
       <div className="border-r border-white mr-5 pr-5 py-3 text-3xl font-medium align-top">
         404
       </div>
