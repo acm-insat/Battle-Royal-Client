@@ -18,6 +18,7 @@ export default {
   plugins: [
     '@snowpack/plugin-postcss',
     '@snowpack/plugin-sass',
+    '@snowpack/plugin-dotenv',
     [
       '@snowpack/plugin-babel',
       {

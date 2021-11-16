@@ -1,8 +1,6 @@
 import { Button, Team } from '../ui'
 
 const Navbar = () => {
-  
-
   const isLoggedIn = true
   const isAdmin = true
 
@@ -12,7 +10,8 @@ const Navbar = () => {
         <Button href="/" className="font-bold">
           ACM | Battle Royale
         </Button>
-        <div className="w-3/5	flex float-left">
+
+        {/* <div className="w-3/5	flex float-left">
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/problemset" show={isLoggedIn}
@@ -51,8 +50,7 @@ const Navbar = () => {
         <i className="fas fa-user-shield"></i>
         </Button>
 </div>
-        
-
+         */}
       </nav>
     </div>
   )

@@ -2,15 +2,16 @@ import { lazy } from 'react'
 
 const routes = [
   {
-    path: '/register',
-    component: lazy(() => import('../pages/register')),
+    path: '/',
+    component: lazy(() => import('../pages/home')),
     roles: [],
   },
   {
-    path: '/lost',
+    path: '/404',
     component: lazy(() => import('../pages/lost')),
     roles: [],
   },
+  /*
   {
     path: '/login',
     component: lazy(() => import('../pages/login')),
@@ -61,11 +62,7 @@ const routes = [
     component: lazy(() => import('../pages/admin')),
     roles: [],
   },
-  {
-    path: '/',
-    component: lazy(() => import('../pages/home')),
-    roles: [],
-  },
+  */
 ]
 
 export default routes
