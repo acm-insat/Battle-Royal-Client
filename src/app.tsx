@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom'
 import Layout from 'shared/components/Layout'
 import Routes from './config/app.routes'
-import ProtectedRoute from 'shared/components/ProtectedRoute'
 import Loading from 'shared/components/Loading'
 // import { wrapper } from './shared/apollo.utils'
 // import { queryData } from 'shared/queries'
