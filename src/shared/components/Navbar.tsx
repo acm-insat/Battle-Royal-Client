@@ -1,44 +1,58 @@
-import { Button, Team } from '../ui'
+import { Button } from '../ui'
 
-const Navbar = () => {
-  const isLoggedIn = true
-  const isAdmin = true
+const Navbar = props => {
+  const { name, isLoggedIn } = props
 
   return (
     <div className="bg-primary-1 shadow-md">
       <nav className="w-4/5 mx-auto py-2 h-auto flex items-center">
-        <Button href="/" className="font-bold">
-          ACM | Battle Royale
+        <Button href="/" className="font-bold ">
+          INSAT ACM {name ? `~ ${name}` : null}
         </Button>
 
-        {/* <div className="w-3/5	flex float-left">
         <Button
           className="text-opacity-50 hover:text-opacity-100"
-          href="/problemset" show={isLoggedIn}
+          href="/problemset"
         >
           Problemset
         </Button>
+
         <Button
           className="text-opacity-50 hover:text-opacity-100"
-          href="/submissions" show={isLoggedIn && isAdmin}
+          href="/submissions"
+          show={isLoggedIn}
         >
           Submissions
         </Button>
+
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/leaderboard"
         >
           Leaderboard
         </Button>
-</div>
 
-<div className="w-1/5	flex float-right">
-<Button
+        <div className="mx-auto"></div>
+
+        <Button
           className="text-opacity-50 hover:text-opacity-100"
-          href="/login" show={!isLoggedIn}
+          href="/login"
+          show={!isLoggedIn}
         >
           Login
         </Button>
+
+        <Button href="/login" contained show={isLoggedIn}>
+          Logout
+        </Button>
+
+        {/* 
+        
+        
+        
+
+
+
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/register"

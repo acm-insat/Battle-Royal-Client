@@ -1,15 +1,10 @@
-import { Card, Button, Announcement, Team } from 'shared/ui'
-import Countdown from 'react-countdown'
-import React from 'react'
+import { Card } from 'shared/ui'
+import Announcements from './Announcements'
+import TeamIntro from './TeamIntro'
 
-const Home = () => {
-  const isLoggedIn = false
-  const twentyfourhours = 24 * 3600 * 1000
-  const startDate = Date.now() //PBR start date
-  const [teamsCount, setTeamsCount] = React.useState(0)
-  React.useEffect(() => {
-    setTeamsCount(document.getElementsByClassName('flex my-2').length)
-  }, [teamsCount])
+const Home = props => {
+  const { user } = props
+
   return (
     <div className="flex gap-x-8 w-full">
       <div className="flex-grow">
@@ -19,38 +14,12 @@ const Home = () => {
             <br />
             1st Edition
             <br />
-            {!isLoggedIn && (
-              <>
-                <br />
-
-                <div className="">
-                  <Button contained href="/register">
-                    Register Your Team Now
-                  </Button>
-                </div>
-              </>
-            )}
+            {user && <TeamIntro {...user} />}
             <br />
-            {/* Event will start/end in{' '}
-            <Countdown
-              key={startDate + twentyfourhours}
-              date={startDate + twentyfourhours}
-            /> */}
           </div>
           <br />
-          {/* <h2>News &amp; Announcements</h2>
-          <br />
-          <div className="content mx-auto">
-            <Announcement
-              flair="new"
-              title="Big news ipsum dolor sit amet consectetur"
-            />
-            <Announcement
-              flair="info"
-              flaircolor="primary-4"
-              title="Small News ipsum dolor sit amet consectetur"
-            />
-          </div> */}
+
+          <Announcements />
         </Card>
       </div>
       {/* <div className="flex-grow-0 w-80">

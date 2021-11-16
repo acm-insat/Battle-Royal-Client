@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
-
 body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
@@ -40,11 +39,31 @@ body {
   color: rgba(217, 119, 6, var(--tw-text-opacity));
 }
 
-.text-gray-500{
+.text-gray-500 {
   --tw-text-opacity: 1;
-color: rgba(107, 114, 128, var(--tw-text-opacity));
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
 select {
-  font-family: 'FontAwesome', 'Font Awesome 5 Brands', 'Font Awesome 5 Free', 'Poppins', 'sans-serif';
+  font-family: 'FontAwesome', 'Font Awesome 5 Brands', 'Font Awesome 5 Free',
+    'Poppins', 'sans-serif';
+}
+
+.markdown h1 {
+  font-weight: 900;
+  font-size: large;
+  padding: 5px 0 5px 0;
+}
+
+.markdown h2 {
+  font-weight: 800;
+  padding: 5px 0 5px 0;
+  font-size: medium;
+}
+
+.markdown pre {
+  background: #000;
+  padding: 10px;
+  margin: 5px 0 5px 0;
+  border-radius: 7px;
 }

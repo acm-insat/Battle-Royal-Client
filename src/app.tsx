@@ -8,25 +8,34 @@ import {
 import Layout from 'shared/components/Layout'
 import Routes from './config/app.routes'
 import Loading from 'shared/components/Loading'
-// import { wrapper } from './shared/apollo.utils'
-// import { queryData } from 'shared/queries'
+import { wrapper } from './shared/apollo.utils'
+import { getMyData } from 'shared/queries'
+import { isNull } from 'lodash'
+import { Toaster } from 'react-hot-toast'
 
 const App = (props: any) => {
-  // const {
-  //   data: { loading, error, someRates },
-  // } = props
-  // console.log({ loading, error, someRates })
+  const {
+    data: { loading, user },
+  } = props
 
-  const isLoggedIn = true
+  if (loading) return <Loading className="w-10 h-10 m-auto" />
+
   return (
     <Suspense fallback={<Loading className="w-10 h-10 m-auto" />}>
       <Router>
-        <Layout>
+        <Layout isLoggedIn={!isNull(user)} name={user?.name}>
+          <Toaster />
           <Switch>
-            {Routes.routes.map(({ path, component, shouldBeloggedIn }) =>
-              !shouldBeloggedIn || (isLoggedIn && shouldBeloggedIn) ? (
-                <Route key={path} exact path={path} component={component} />
-              ) : null
+            {Routes.routes.map(
+              ({ path, component: Component, shouldBeloggedIn }: any) =>
+                !shouldBeloggedIn || (user && shouldBeloggedIn) ? (
+                  <Route
+                    key={path}
+                    exact
+                    path={path}
+                    component={props => <Component {...props} user={user} />}
+                  />
+                ) : null
             )}
 
             <Redirect to="/404" />
@@ -36,4 +45,4 @@ const App = (props: any) => {
     </Suspense>
   )
 }
-export default App
+export default wrapper(getMyData)(App)

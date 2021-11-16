@@ -4,34 +4,34 @@ const routes = [
   {
     path: '/',
     component: lazy(() => import('../pages/home')),
-    shouldBeloggedIn: false,
+  },
+  {
+    path: '/login',
+    component: lazy(() => import('../pages/login')),
+  },
+  {
+    path: '/problemset',
+    component: lazy(() => import('../pages/problemset')),
   },
   {
     path: '/404',
     component: lazy(() => import('../pages/lost')),
     shouldBeloggedIn: false,
   },
-  /*
   {
-    path: '/login',
-    component: lazy(() => import('../pages/login')),
-    roles: [],
+    path: '/problemset/:id',
+    component: lazy(() => import('../pages/problemset/[id]')),
   },
+
+  /*
+  
   {
     path: '/leaderboard',
     component: lazy(() => import('../pages/leaderboard')),
     roles: [],
   },
-  {
-    path: '/problemset/:id',
-    component: lazy(() => import('../pages/problemset/[id]')),
-    roles: [],
-  },
-  {
-    path: '/problemset',
-    component: lazy(() => import('../pages/problemset')),
-    roles: [],
-  },
+  
+  
   {
     path: '/submissions',
     component: lazy(() => import('../pages/submissions')),

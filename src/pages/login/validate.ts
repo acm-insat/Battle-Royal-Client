@@ -2,14 +2,10 @@ import { makeRule } from "shared/helpers"
 
 export const username = {
     required: makeRule(true, 'Username is required'),
-    pattern: makeRule(
-        /^[a-zA-Z0-9-_]+$/,
-        'Username can only contain letters, numbers, dashes and underscores'
-    ),
 }
 
 export const password = {
-    required: true,
-    minLength: 8,
-    maxLength: 20,
+    required: makeRule(true, 'Password is required'),
+    minLength: makeRule(8, 'Password is 8 Characters minimum'),
+    maxLength: makeRule(20, 'Password is 20 Characters maximum'),
   }
