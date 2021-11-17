@@ -1,28 +1,34 @@
 import ReactMarkdown from 'react-markdown'
-import { useState } from 'react'
-// import Editor from 'react-simple-code-editor'
-// import Prism, { highlight, languages } from 'prismjs'
-// import 'prismjs/components/prism-clike'
-// import 'prismjs/components/prism-c'
-// import 'prismjs/components/prism-cpp'
-// import 'prismjs/components/prism-java'
-// import 'prismjs/components/prism-python'
-// import 'prismjs/themes/prism-dark.css'
-// import NewWindow from 'react-new-window'
+import { useState, useEffect } from 'react'
+import Editor from 'react-simple-code-editor'
+import Prism, { highlight, languages } from 'prismjs'
+import 'prismjs/components/prism-clike'
+import 'prismjs/components/prism-c'
+import 'prismjs/components/prism-cpp'
+import 'prismjs/components/prism-java'
+import 'prismjs/components/prism-python'
+import 'prismjs/themes/prism-dark.css'
+import NewWindow from 'react-new-window'
 import { Card, Button, Input, Question, Select } from 'shared/ui'
 import { Redirect } from 'react-router'
 import CreateClarifcation from './CreateClarification'
 import { useProblem } from './hooks'
+import { useForm } from 'react-hook-form'
 
-const Problem = () => {
+import { submitSolution } from 'shared/queries'
+import { useMutation } from '@apollo/client'
+import toast, { Toaster } from 'react-hot-toast'
+
+const Problem = props => {
+  console.log(props)
+
   const { loading, error, data } = useProblem()
+  const [showCodeArea, setShowCodeArea] = useState(false)
 
   if (loading) return <>Loading</>
   if (error) return <Redirect to="/404" />
 
   console.log(data)
-
-  // const [showCodeArea, setShowCodeArea] = useState(false)
 
   return (
     <div>
@@ -39,13 +45,16 @@ const Problem = () => {
         </div>
         <div className="mb-20 markdown text-sm">
           <ReactMarkdown>{data?.problem.content}</ReactMarkdown>
-          <Button
-            //  onClick={() => setShowCodeArea(true)}
-            className="block float-right mt-10"
-            contained
-          >
-            Submit Your Solution
-          </Button>
+
+          {props.user && !props.user.unqualified && (
+            <Button
+              onClick={() => setShowCodeArea(true)}
+              className="block float-right mt-10"
+              contained
+            >
+              Submit Your Solution
+            </Button>
+          )}
         </div>
       </Card>
       <Card title="">
@@ -61,67 +70,114 @@ const Problem = () => {
         ))}
       </Card>
 
-      {/* { showCodeArea ? <Window relatedtoshowcodearea={setShowCodeArea}/> : null } */}
+      {showCodeArea ? (
+        <Window
+          problem={data?.problem.id}
+          relatedtoshowcodearea={setShowCodeArea}
+        />
+      ) : null}
     </div>
   )
 }
 
-// const Window = ({ relatedtoshowcodearea }) => {
-//     const [code, setCode] = React.useState(
-//         `//your-code-here`
-//     )
+const Window = ({ relatedtoshowcodearea, problem }) => {
+  const [code, setCode] = useState(`//your-code-here`)
 
-//     const {
-//         register,
-//     } = useForm()
+  const { register } = useForm()
 
-//     const [lang, setLang] = React.useState('cpp')
-//     const [fontSize, setFontSize] = React.useState(12)
+  const [lang, setLang] = useState('cpp')
+  const [fontSize, setFontSize] = useState(12)
 
-//     React.useEffect(()=>{
-//         console.log(lang)
-//     },[lang])
+  const [submit] = useMutation(submitSolution)
 
-//     return (
-//     <NewWindow onUnload={() => relatedtoshowcodearea(false)}>
-//     <div className="bg-dark-2 text-white top-0 fixed h-14 w-full">
-//     <div className="w-4/5 flex float-left text-white -mt-1">
-//     <select
-//         name="code-language"
-//         onChange={e=>setLang(e.target.value)}
-//         className="w-20 appearance-none p-3 rounded-2xl mr-1 ml-1 mt-2 bg-dark-3 mb-5 focus:outline-none cursor-pointer"
-//         style={{fontFamily: "Font Awesome 5 Brands"}}
-//       >
-//           <option value="cpp">
-//               C++
-//             </option>
-//           <option value="c">
-//               C
-//            </option>
-//           <option value="java">
-//               Java
-//         </option>
-//       </select>
-//     <Button onClick={()=>setFontSize(fontSize+1 < 28 ? fontSize+1 : 28)} contained className="mt-3 mr-1"><i className="fas fa-search-plus"></i></Button>
-//     <Button onClick={()=>setFontSize(fontSize-1 > 8 ? fontSize-1 : 8)} contained className="mt-3"><i className="fas fa-search-minus"></i></Button>
-//     </div>
-//     <div className="w-1/5 flex float-right">
-//     <Button className="block float-right mt-2 mr-2 ml-auto" type="submit" contained>Submit</Button>
-//     </div>
-//     </div>
-//     <Editor
-//     className="mt-14 min-h-full	 text-white bg-dark-3"
-//       value={code}
-//       onValueChange={(code) => setCode(code)}
-//       highlight={(code) => highlight(code, languages[lang])}
-//       padding={10}
-//       style={{
-//         fontFamily: '"Fira code", "Fira Mono", monospace',
-//         fontSize: fontSize,
-//       }}
-//     />
-//   </NewWindow>
-//     )
-// }
+  useEffect(() => {
+    console.log(lang)
+  }, [lang])
+
+  const handleSubmit = async () => {
+    const getLanguageId = id => {
+      return {
+        cpp: 54,
+        java: 62,
+        c: 50,
+      }[id]
+    }
+    console.log('FUCK')
+
+    submit({
+      variables: {
+        submission: {
+          score: 69,
+          language_id: getLanguageId(lang),
+          source_code: code,
+          problem,
+        },
+      },
+    })
+      .then(response => {
+        if (response.data.submitSolution === 'done')
+          toast.success('Code Submitted Successfully')
+        else toast.error('Submission was unsuccessful')
+      })
+      .catch(() => toast.error('Submission was unsuccessful'))
+
+    console.log(getLanguageId(lang), code)
+  }
+
+  return (
+    <NewWindow onUnload={() => relatedtoshowcodearea(false)}>
+      <Toaster />
+      <div className="bg-dark-2 text-white top-0 fixed h-14 w-full">
+        <div className="w-4/5 flex float-left text-white -mt-1">
+          <select
+            name="code-language"
+            onChange={e => setLang(e.target.value)}
+            className="w-20 appearance-none p-3 rounded-2xl mr-1 ml-1 mt-2 bg-dark-3 mb-5 focus:outline-none cursor-pointer"
+            style={{ fontFamily: 'Font Awesome 5 Brands' }}
+          >
+            <option value="54">C++</option>
+            <option value="50">C</option>
+            <option value="62">Java</option>
+          </select>
+          <Button
+            onClick={() => setFontSize(fontSize + 1 < 28 ? fontSize + 1 : 28)}
+            contained
+            className="mt-3 mr-1"
+          >
+            <i className="fas fa-search-plus"></i>
+          </Button>
+          <Button
+            onClick={() => setFontSize(fontSize - 1 > 8 ? fontSize - 1 : 8)}
+            contained
+            className="mt-3"
+          >
+            <i className="fas fa-search-minus"></i>
+          </Button>
+        </div>
+        <div className="w-1/5 flex float-right">
+          <Button
+            className="block float-right mt-2 mr-2 ml-auto"
+            type="submit"
+            contained
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </div>
+      </div>
+      <Editor
+        className="mt-14 min-h-full	 text-white bg-dark-3"
+        value={code}
+        onValueChange={code => setCode(code)}
+        highlight={code => highlight(code, languages[lang])}
+        padding={10}
+        style={{
+          fontFamily: '"Fira code", "Fira Mono", monospace',
+          fontSize: fontSize,
+        }}
+      />
+    </NewWindow>
+  )
+}
 
 export default Problem

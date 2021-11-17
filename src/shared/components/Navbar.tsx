@@ -1,7 +1,14 @@
+import { useHistory } from 'react-router'
 import { Button } from '../ui'
 
 const Navbar = props => {
   const { name, isLoggedIn } = props
+  const router = useHistory()
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    router.push('/login')
+  }
 
   return (
     <div className="bg-primary-1 shadow-md">
@@ -42,7 +49,7 @@ const Navbar = props => {
           Login
         </Button>
 
-        <Button href="/login" contained show={isLoggedIn}>
+        <Button contained show={isLoggedIn} onClick={handleLogout}>
           Logout
         </Button>
 
