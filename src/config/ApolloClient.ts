@@ -15,27 +15,27 @@ const authLink = setContext((_, { headers }) => {
 })
 
 
-const wsLink = new WebSocketLink({
-  uri: `${process.env.SNOWPACK_PUBLIC_SOCKET_URL}`,
-  options: {
-    reconnect: true,
-    connectionParams: {
-      authToken: `Bearer ${localStorage.getItem('token')}`,
-    },
-  }
-})
+// const wsLink = new WebSocketLink({
+//   uri: `${process.env.SNOWPACK_PUBLIC_SOCKET_URL}`,
+//   options: {
+//     reconnect: true,
+//     connectionParams: {
+//       authToken: `Bearer ${localStorage.getItem('token')}`,
+//     },
+//   }
+// })
 
-const connectionLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
-    );
-  },
-  wsLink,
-  httpLink,
-)
+// const connectionLink = split(
+//   ({ query }) => {
+//     const definition = getMainDefinition(query);
+//     return (
+//       definition.kind === 'OperationDefinition' &&
+//       definition.operation === 'subscription'
+//     );
+//   },
+//   wsLink,
+//   httpLink,
+// )
 
 const client = new ApolloClient({
   link: concat(authLink, httpLink),
