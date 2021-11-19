@@ -23,7 +23,7 @@ const Problemset = props => {
           (a: any, b: any) =>
             new Date(Number(a.createdAt) - Number(b.createdAt))
         )
-        .map((problem, idx) => (
+        .map(problem => (
           <Challenge
             id={problem.id}
             key={problem.id}
@@ -34,7 +34,7 @@ const Problemset = props => {
             state={problem?.launched?.isIt && !problem?.ended ? 'on' : 'off'}
             level={problem.type === 1 ? 'Easy' : 'Medium'}
             points={problem.score}
-            shortdescription={problem.content}
+            shortdescription={problem.shorterContent}
           />
         ))}
     </div>

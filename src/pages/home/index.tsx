@@ -1,9 +1,12 @@
 import { Card } from 'shared/ui'
+import { useAuth } from '../../config/auth.context'
 import Announcements from './Announcements'
 import TeamIntro from './TeamIntro'
 
 const Home = props => {
   const { user } = props
+
+  const { isAuth } = useAuth()
 
   return (
     <div className="flex gap-x-8 w-full">
@@ -14,7 +17,6 @@ const Home = props => {
             <br />
             1st Edition
             <br />
-            {user && <TeamIntro {...user} />}
             <br />
           </div>
           <br />
@@ -22,24 +24,11 @@ const Home = props => {
           <Announcements />
         </Card>
       </div>
-      {/* <div className="flex-grow-0 w-80">
-      <Card title="">
-        <div className="-mt-5">
-      <h1 className="text-2xl">Linus Tech Tips</h1>
-        <div className="flex gap-x-2">
-        <h2>Active Team Members</h2>
-        <span className={"bg-white text-black tracking-wide text-xs w-auto inline-block rounded-full py-1 px-2 uppercase"}>{teamsCount}</span>
+      {user && (
+        <div className="flex-grow w-80">
+          <TeamIntro {...user} />
         </div>
-        <br/>
-        <Team name="Linus Sebastian" active="true"/>
-        <Team name="Madison Reeve" active="true"/>
-        <Team name="Nicholas Plouffe" active="false"/>
-        <Team name="Anthony Young" active="true"/>
-        <Team name="Alex Clark" active="false"/>
-        <Team name="Riley Murdock" active="true"/>
-        </div>
-      </Card>
-      </div> */}
+      )}
     </div>
   )
 }

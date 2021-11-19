@@ -10,6 +10,8 @@ const Leaderboard = props => {
 
   if (loading) return null
 
+  console.log(scoreboard)
+
   return (
     <Card title="Leaderboard">
       {scoreboard &&
@@ -22,9 +24,10 @@ const Leaderboard = props => {
               name={team.name}
               points={team.score}
               unqualified={team.unqualified}
+              rounds={team.problemsSolved.length}
             />
           ))}
     </Card>
   )
 }
-export default wrapper(getScoreboard)(Leaderboard)
+export default wrapper(getScoreboard, { fetchPolicy: 'no-cache' })(Leaderboard)

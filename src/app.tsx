@@ -10,8 +10,9 @@ import Routes from './config/app.routes'
 import Loading from 'shared/components/Loading'
 import { wrapper } from './shared/apollo.utils'
 import { getMyData } from 'shared/queries'
-import { isNull } from 'lodash'
 import { Toaster } from 'react-hot-toast'
+import { ContextProvider } from './config/auth.context'
+import Notification from './shared/components/Notification'
 
 const App = (props: any) => {
   const {
@@ -23,24 +24,27 @@ const App = (props: any) => {
   return (
     <Suspense fallback={<Loading className="w-10 h-10 m-auto" />}>
       <Router>
-        <Layout isLoggedIn={!isNull(user)} name={user?.name}>
-          <Toaster />
-          <Switch>
-            {Routes.routes.map(
-              ({ path, component: Component, shouldBeloggedIn }: any) =>
-                !shouldBeloggedIn || (user && shouldBeloggedIn) ? (
-                  <Route
-                    key={path}
-                    exact
-                    path={path}
-                    component={props => <Component {...props} user={user} />}
-                  />
-                ) : null
-            )}
+        <ContextProvider>
+          <Layout name={user?.name}>
+            <Toaster />
+            <Notification />
+            <Switch>
+              {Routes.routes.map(
+                ({ path, component: Component, shouldBeloggedIn }: any) =>
+                  !shouldBeloggedIn || (user && shouldBeloggedIn) ? (
+                    <Route
+                      key={path}
+                      exact
+                      path={path}
+                      component={props => <Component {...props} user={user} />}
+                    />
+                  ) : null
+              )}
 
-            <Redirect to="/404" />
-          </Switch>
-        </Layout>
+              <Redirect to="/404" />
+            </Switch>
+          </Layout>
+        </ContextProvider>
       </Router>
     </Suspense>
   )

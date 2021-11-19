@@ -1,12 +1,15 @@
 import { useHistory } from 'react-router'
+import { useAuth } from '../../config/auth.context'
 import { Button } from '../ui'
 
 const Navbar = props => {
-  const { name, isLoggedIn } = props
+  const { name } = props
   const router = useHistory()
 
+  const { isAuth, logout } = useAuth()
+
   const handleLogout = () => {
-    localStorage.removeItem('token')
+    logout()
     router.push('/login')
   }
 
@@ -27,7 +30,7 @@ const Navbar = props => {
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/submissions"
-          show={isLoggedIn}
+          show={isAuth}
         >
           Submissions
         </Button>
@@ -44,12 +47,12 @@ const Navbar = props => {
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/login"
-          show={!isLoggedIn}
+          show={!isAuth}
         >
           Login
         </Button>
 
-        <Button contained show={isLoggedIn} onClick={handleLogout}>
+        <Button contained show={isAuth} onClick={handleLogout}>
           Logout
         </Button>
 

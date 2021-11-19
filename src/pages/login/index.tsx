@@ -6,6 +6,7 @@ import { getFormErrors } from 'shared/helpers'
 import { loginTeam } from 'shared/queries'
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
+import { useAuth } from '../../config/auth.context'
 
 const Login = () => {
   const {
@@ -13,15 +14,18 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
+
+  const { login: loginSuccessful } = useAuth()
+
   const [couldntLogin, setCouldntLogin] = useState<String | null>(null)
   const router = useHistory()
 
   const [login] = useMutation(loginTeam)
 
   const onSubmit = credentials => {
-    login({ variables: { credentials } }).then((response: any) => {
+    login({ variables: { credentials } }).then(async (response: any) => {
       if (response?.data?.login) {
-        localStorage.setItem('token', response.data.login)
+        await loginSuccessful(response.data.login)
         router.push('/')
       } else setCouldntLogin('Couldnt Login, Check your Credentials')
     })

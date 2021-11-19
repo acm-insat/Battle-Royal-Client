@@ -1,11 +1,11 @@
 import { Team, Card } from 'shared/ui'
-
+import CountUp from 'react-countup'
 const TeamIntro = props => {
   const { name, score, unqualified, members } = props
   return (
-    <div>
+    <Card>
       <div className="flex-grow-0 w-80 mx-auto">
-        <div className="mt-5">
+        <div className="-mt-4 ">
           <h1 className="text-2xl">{name}</h1>
 
           {unqualified ? (
@@ -13,7 +13,9 @@ const TeamIntro = props => {
           ) : (
             <h3 className="text-green-600">QUALIFIED TEAM</h3>
           )}
-          <div className="text-xl text-green-300"></div>
+          <div className="text-xl text-green-300">
+            <CountUp start={0} end={score} suffix=" XP" duration={1} />
+          </div>
           <br />
           <div className="flex gap-x-2 mb-5">
             <h2>Registered Members</h2>
@@ -24,7 +26,7 @@ const TeamIntro = props => {
           ))}
         </div>
       </div>
-    </div>
+    </Card>
   )
 }
 

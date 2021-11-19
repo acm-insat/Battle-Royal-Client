@@ -13,22 +13,17 @@ import { Card, Button, Input, Question, Select } from 'shared/ui'
 import { Redirect } from 'react-router'
 import CreateClarifcation from './CreateClarification'
 import { useProblem } from './hooks'
-import { useForm } from 'react-hook-form'
 
 import { submitSolution } from 'shared/queries'
 import { useMutation } from '@apollo/client'
 import toast, { Toaster } from 'react-hot-toast'
 
 const Problem = props => {
-  console.log(props)
-
   const { loading, error, data } = useProblem()
   const [showCodeArea, setShowCodeArea] = useState(false)
 
   if (loading) return <>Loading</>
   if (error) return <Redirect to="/404" />
-
-  console.log(data)
 
   return (
     <div>
@@ -45,16 +40,18 @@ const Problem = props => {
         </div>
         <div className="mb-20 markdown text-sm">
           <ReactMarkdown>{data?.problem.content}</ReactMarkdown>
-
-          {props.user && !props.user.unqualified && (
-            <Button
-              onClick={() => setShowCodeArea(true)}
-              className="block float-right mt-10"
-              contained
-            >
-              Submit Your Solution
-            </Button>
-          )}
+          {props.user.problemsSolved.indexOf(data?.problem.id)}
+          {props.user &&
+            !props.user.unqualified &&
+            props.user.problemsSolved.indexOf(data?.problem.id) === -1 && (
+              <Button
+                onClick={() => setShowCodeArea(true)}
+                className="block float-right mt-10"
+                contained
+              >
+                Submit Your Solution
+              </Button>
+            )}
         </div>
       </Card>
       <Card title="">
@@ -83,16 +80,18 @@ const Problem = props => {
 const Window = ({ relatedtoshowcodearea, problem }) => {
   const [code, setCode] = useState(`//your-code-here`)
 
-  const { register } = useForm()
-
-  const [lang, setLang] = useState('cpp')
+  const [lang, setLang] = useState(54)
   const [fontSize, setFontSize] = useState(12)
 
   const [submit] = useMutation(submitSolution)
 
-  useEffect(() => {
-    console.log(lang)
-  }, [lang])
+  const getLanguageById = id => {
+    return {
+      54: 'cpp',
+      62: 'java',
+      50: 'c',
+    }[id]
+  }
 
   const handleSubmit = async () => {
     const getLanguageId = id => {
@@ -102,13 +101,12 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
         c: 50,
       }[id]
     }
-    console.log('FUCK')
 
     submit({
       variables: {
         submission: {
           score: 69,
-          language_id: getLanguageId(lang),
+          language_id: lang,
           source_code: code,
           problem,
         },
@@ -120,8 +118,6 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
         else toast.error('Submission was unsuccessful')
       })
       .catch(() => toast.error('Submission was unsuccessful'))
-
-    console.log(getLanguageId(lang), code)
   }
 
   return (
@@ -165,11 +161,18 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
           </Button>
         </div>
       </div>
+
       <Editor
         className="mt-14 min-h-full	 text-white bg-dark-3"
         value={code}
         onValueChange={code => setCode(code)}
-        highlight={code => highlight(code, languages[lang])}
+        highlight={code =>
+          highlight(
+            code,
+            languages[getLanguageById(lang)],
+            getLanguageById(lang)
+          )
+        }
         padding={10}
         style={{
           fontFamily: '"Fira code", "Fira Mono", monospace',

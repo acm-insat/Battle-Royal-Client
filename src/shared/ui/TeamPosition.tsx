@@ -1,5 +1,5 @@
 function ordinal_suffix_of(i: any) {
-  var j = i % 10,
+  const j = i % 10,
     k = i % 100
   if (j == 1 && k != 11) {
     return 'st'
@@ -20,12 +20,13 @@ const rankColourMap: any = {
 }
 
 const TeamPosition = props => {
-  const { position, name, points, unqualified } = props
+  const { position, name, points, unqualified, rounds } = props
+
   return (
     <div
       className={
         'flex ' +
-        (position === '1'
+        (position === 1
           ? 'text-2xl sm:text-3xl flex rounded bg-dark-2 shadow-md -mx-12 px-12 mb-3 h-24'
           : 'h-16')
       }
@@ -33,7 +34,7 @@ const TeamPosition = props => {
       <div
         className={
           'w-1/4 my-auto font-bold ' +
-          (position === '1' ? ' ' : ' text-sm ') +
+          (position === 1 ? ' ' : ' text-sm ') +
           'text-' +
           rankColourMap[position] +
           '-400 ' +
@@ -49,8 +50,11 @@ const TeamPosition = props => {
         {name}
       </div>
       <div className={`${unqualified && 'text-dark-3'} w-1/4 my-auto`}>
-        {points} pts
+        {points} XP
         <br />
+        <small className={position === 1 ? 'text-base' : 'text-xs'}>
+          {rounds} rds-solved
+        </small>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-const Team = (props: Props) => {
+const Team = props => {
   const { name, size, username, show = true, active, acm } = props
 
   function stringToBoolean(string: String) {
@@ -48,12 +48,6 @@ const Team = (props: Props) => {
             width="50"
             height="50"
           />
-          {/*stringToBoolean(active)&&<>
-            <div className="bg-green-500 absolute rounded-2xl  bottom-0 right-0 w-4 h-4"></div>
-            </>}
-            {!stringToBoolean(active)&&<>
-            <div className="bg-red-500 absolute rounded-2xl  bottom-0 right-0 w-4 h-4"></div>
-            </>*/}
         </div>
         <h4 className="mt-3 ml-2 text-white">
           {name}{' '}
@@ -63,7 +57,7 @@ const Team = (props: Props) => {
                 'bg-blue-600 text-white tracking-wide text-xs w-auto inline-block rounded-full py-1 px-2'
               }
             >
-              acm
+              ACM
             </span>
           ) : (
             ''

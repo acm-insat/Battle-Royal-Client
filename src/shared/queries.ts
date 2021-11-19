@@ -22,6 +22,7 @@ export const getMyData = gql`
         name
         score
         unqualified
+        problemsSolved
         members {
             fullname
             isMember
@@ -63,6 +64,7 @@ export const getScoreboard = gql`
     scoreboard {
         name
         score
+        problemsSolved
         unqualified
     }
 }
@@ -75,6 +77,7 @@ export const getProblems = gql`
         id
         title
         content
+        shorterContent
         score
         type
         length
@@ -106,5 +109,11 @@ export const getMySubmissions = gql`
 export const submitSolution = gql`
 mutation SubmitSolution($submission: SubmissionInput!) {
     submitSolution(submission: $submission)
+}
+`
+
+export const subscribeToPublicNotifications = gql`
+subscription {
+  publicNotification
 }
 `
