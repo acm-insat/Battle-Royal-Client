@@ -21,7 +21,7 @@ const CreateClarifcation = ({ problem }) => {
       <div className="mr-1" style={{ width: '95%' }}>
         <Input name="content" placeholder="ask-here" register={register} />
       </div>
-      <Button className="block float-right mt-9" contained>
+      <Button className="block float-right mt-9" contained type="submit">
         <i className="fas fa-paper-plane"></i>
       </Button>
     </form>

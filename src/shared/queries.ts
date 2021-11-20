@@ -93,11 +93,11 @@ export const getProblems = gql`
 export const getMySubmissions = gql`
 {
     submissions {
-        id
         problem {
             title
         }
         response
+        responseDescription
         source_code
         language_id
         score

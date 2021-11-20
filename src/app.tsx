@@ -11,7 +11,7 @@ import Loading from 'shared/components/Loading'
 import { wrapper } from './shared/apollo.utils'
 import { getMyData } from 'shared/queries'
 import { Toaster } from 'react-hot-toast'
-import { ContextProvider } from './config/auth.context'
+import { useAuth } from './config/auth.context'
 import Notification from './shared/components/Notification'
 
 const App = (props: any) => {
@@ -19,32 +19,32 @@ const App = (props: any) => {
     data: { loading, user },
   } = props
 
+  const { isAuth } = useAuth()
+
   if (loading) return <Loading className="w-10 h-10 m-auto" />
 
   return (
     <Suspense fallback={<Loading className="w-10 h-10 m-auto" />}>
       <Router>
-        <ContextProvider>
-          <Layout name={user?.name}>
-            <Toaster />
-            <Notification />
-            <Switch>
-              {Routes.routes.map(
-                ({ path, component: Component, shouldBeloggedIn }: any) =>
-                  !shouldBeloggedIn || (user && shouldBeloggedIn) ? (
-                    <Route
-                      key={path}
-                      exact
-                      path={path}
-                      component={props => <Component {...props} user={user} />}
-                    />
-                  ) : null
-              )}
+        <Layout name={user?.name}>
+          <Toaster />
+          <Notification />
+          <Switch>
+            {Routes.routes.map(
+              ({ path, component: Component, shouldBeloggedIn }: any) =>
+                !shouldBeloggedIn || (isAuth && shouldBeloggedIn) ? (
+                  <Route
+                    key={path}
+                    exact
+                    path={path}
+                    component={props => <Component {...props} user={user} />}
+                  />
+                ) : null
+            )}
 
-              <Redirect to="/404" />
-            </Switch>
-          </Layout>
-        </ContextProvider>
+            <Redirect to="/404" />
+          </Switch>
+        </Layout>
       </Router>
     </Suspense>
   )

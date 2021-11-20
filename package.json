@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "snowpack dev",
-    "build": "snowpack build",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
+    "build": "snowpack build"
   },
   "keywords": [],
   "author": "",

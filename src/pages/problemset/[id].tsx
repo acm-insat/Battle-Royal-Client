@@ -77,7 +77,7 @@ const Problem = props => {
 }
 
 const Window = ({ relatedtoshowcodearea, problem }) => {
-  const [code, setCode] = useState(`//your-code-here`)
+  const [code, setCode] = useState('')
 
   const [lang, setLang] = useState(54)
   const [fontSize, setFontSize] = useState(12)
@@ -89,34 +89,29 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
       54: 'cpp',
       62: 'java',
       50: 'c',
+      71: 'python',
     }[id]
   }
 
   const handleSubmit = async () => {
-    const getLanguageId = id => {
-      return {
-        cpp: 54,
-        java: 62,
-        c: 50,
-      }[id]
-    }
-
-    submit({
-      variables: {
-        submission: {
-          score: 69,
-          language_id: lang,
-          source_code: code,
-          problem,
+    if (code !== '')
+      submit({
+        variables: {
+          submission: {
+            language_id: lang,
+            source_code: code,
+            problem,
+          },
         },
-      },
-    })
-      .then(response => {
-        if (response.data.submitSolution === 'done')
-          toast.success('Code Submitted Successfully')
-        else toast.error('Submission was unsuccessful')
       })
-      .catch(() => toast.error('Submission was unsuccessful'))
+        .then(response => {
+          if (response.data.submitSolution === 'done')
+            toast.success('Code Submitted Successfully')
+          else toast.error('Submission was unsuccessful')
+
+          setCode('')
+        })
+        .catch(() => toast.error('Submission was unsuccessful'))
   }
 
   return (
@@ -126,13 +121,14 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
         <div className="w-4/5 flex float-left text-white -mt-1">
           <select
             name="code-language"
-            onChange={e => setLang(e.target.value)}
+            onChange={e => setLang(Number(e.target.value))}
             className="w-20 appearance-none p-3 rounded-2xl mr-1 ml-1 mt-2 bg-dark-3 mb-5 focus:outline-none cursor-pointer"
             style={{ fontFamily: 'Font Awesome 5 Brands' }}
           >
             <option value="54">C++</option>
             <option value="50">C</option>
             <option value="62">Java</option>
+            <option value="71">Python</option>
           </select>
           <Button
             onClick={() => setFontSize(fontSize + 1 < 28 ? fontSize + 1 : 28)}

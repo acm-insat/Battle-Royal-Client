@@ -12,7 +12,7 @@ export default {
     shared: './src/shared',
   },
   devOptions: {
-    port: 666,
+    port: 24242,
     tailwindConfig: './tailwind.config.js',
   },
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],

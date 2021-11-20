@@ -18,25 +18,26 @@ const Problemset = props => {
         <p className="text-white pl-3">Problems Count: {}</p>
       </div>
 
-      {problems
-        ?.sort(
-          (a: any, b: any) =>
-            new Date(Number(a.createdAt) - Number(b.createdAt))
-        )
-        .map(problem => (
-          <Challenge
-            id={problem.id}
-            key={problem.id}
-            timeLeft={
-              new Date().getTime() - (problem?.launched?.at + problem?.length)
-            }
-            title={problem.title}
-            state={problem?.launched?.isIt && !problem?.ended ? 'on' : 'off'}
-            level={problem.type === 1 ? 'Easy' : 'Medium'}
-            points={problem.score}
-            shortdescription={problem.shorterContent}
-          />
-        ))}
+      {problems &&
+        [...problems]
+          ?.map(({ createdAt, ...content }) => ({
+            ...content,
+            createdAt: new Date(Number(createdAt)),
+          }))
+          .map((problem: any) => (
+            <Challenge
+              id={problem.id}
+              key={problem.id}
+              timeLeft={
+                new Date().getTime() - (problem?.launched?.at + problem?.length)
+              }
+              title={problem.title}
+              state={problem?.launched?.isIt && !problem?.ended ? 'on' : 'off'}
+              level={problem.type === 1 ? 'Easy' : 'Medium'}
+              points={problem.score}
+              shortdescription={problem.shorterContent}
+            />
+          ))}
     </div>
   )
 }
