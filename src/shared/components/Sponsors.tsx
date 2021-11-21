@@ -1,5 +1,11 @@
 export default function Sponsors() {
-  const sponsors = ['/assets/logo.png']
+  const sponsors = [
+    '/assets/logo.png',
+    '/assets/sfbt.png',
+    '/assets/4c.gif',
+    '/assets/gh.png',
+    '/assets/press.png',
+  ]
 
   return (
     <div className="w-1/2 mx-auto my-5">
@@ -16,7 +22,7 @@ export default function Sponsors() {
             key={idx}
             src={sponsor}
             style={{
-              height: '50px',
+              height: '70px',
               borderRadius: '5px',
               width: 'auto',
               flexBasis: '33px',

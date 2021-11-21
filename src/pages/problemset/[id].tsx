@@ -40,7 +40,8 @@ const Problem = props => {
         </div>
         <div className="mb-20 markdown text-sm">
           <ReactMarkdown>{data?.problem.content}</ReactMarkdown>
-          {props.user &&
+          {!data?.problem.ended &&
+            props.user &&
             !props.user.unqualified &&
             props.user.problemsSolved.indexOf(data?.problem.id) === -1 && (
               <Button
