@@ -22,21 +22,21 @@ const routes = [
     path: '/problemset/:id',
     component: lazy(() => import('../pages/problemset/[id]')),
   },
-
-  /*
-  
   {
     path: '/leaderboard',
     component: lazy(() => import('../pages/leaderboard')),
-    roles: [],
   },
-  
-  
   {
     path: '/submissions',
+    shouldBeloggedIn: true,
     component: lazy(() => import('../pages/submissions')),
-    roles: [],
   },
+  /*
+  
+  
+  
+  
+  
   {
     path: '/admin/problems/new',
     component: lazy(() => import('../pages/admin/newproblem')),

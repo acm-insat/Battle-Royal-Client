@@ -9,7 +9,7 @@ const Announcements = props => {
 
   const extractAnnouncements = arr =>
     arr
-      .map(({ content, createdAt }) => ({
+      ?.map(({ content, createdAt }) => ({
         content,
         createdAt: new Date(Number(createdAt)),
       }))
@@ -21,7 +21,7 @@ const Announcements = props => {
       <h2 className="font-bold">News &amp; Announcements</h2>
       <br />
       <div className="content mx-auto">
-        {extractAnnouncements(announcements).map(a => (
+        {extractAnnouncements(announcements)?.map(a => (
           <Announcement key={a.createdAt} flair="new" title={a.content} />
         ))}
       </div>

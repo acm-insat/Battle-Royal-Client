@@ -22,6 +22,7 @@ export const getMyData = gql`
         name
         score
         unqualified
+        problemsSolved
         members {
             fullname
             isMember
@@ -42,11 +43,77 @@ export const getProblemById = gql`
             content
             response
         }
+        length
+        launched {
+            isIt
+            at
+        }
+        ended
+        id
 }
 }
 ` 
 export const createQuestion = gql`
 mutation CreateQuestion($problem: ID!, $content: String!) {
     askQuestion(problem: $problem, content: $content)
+}
+`
+
+export const getScoreboard = gql`
+{
+    scoreboard {
+        name
+        score
+        problemsSolved
+        unqualified
+    }
+}
+`
+
+
+export const getProblems = gql`
+{
+    problems {
+        id
+        title
+        content
+        shorterContent
+        score
+        type
+        length
+        launched {
+            isIt
+            at
+        }
+        ended
+    }
+}
+`
+
+export const getMySubmissions = gql`
+{
+    submissions {
+        id
+        problem {
+            title
+        }
+        response
+        source_code
+        language_id
+        score
+        createdAt
+    }
+}
+`
+
+export const submitSolution = gql`
+mutation SubmitSolution($submission: SubmissionInput!) {
+    submitSolution(submission: $submission)
+}
+`
+
+export const subscribeToPublicNotifications = gql`
+subscription {
+  publicNotification
 }
 `
