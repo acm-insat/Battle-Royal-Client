@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router'
+import { useHistory, IndexLink } from 'react-router'
 import { useAuth } from '../../config/auth.context'
 import { Button } from '../ui'
 
@@ -23,6 +23,7 @@ const Navbar = props => {
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/problemset"
+          active="text-opacity-100"
         >
           Problemset
         </Button>
@@ -30,6 +31,7 @@ const Navbar = props => {
         <Button
           className="text-opacity-50 hover:text-opacity-100"
           href="/submissions"
+          active="text-opacity-100"
           show={isAuth}
         >
           Submissions
@@ -37,6 +39,7 @@ const Navbar = props => {
 
         <Button
           className="text-opacity-50 hover:text-opacity-100"
+          active="text-opacity-100"
           href="/leaderboard"
         >
           Leaderboard

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const styles = (
   disabled,
@@ -7,10 +7,14 @@ const styles = (
   className: string = '',
   fullWidth: boolean = false
 ) => {
-  let base = `${fullWidth ? 'w-full' : 'w-30'} h-10 px-3 grid place-items-center duration-300 text-white `
-  
+  let base = `${
+    fullWidth ? 'w-full' : 'w-30'
+  } h-10 px-3 grid place-items-center duration-300 text-white `
+
   if (contained) base += 'bg-primary-2 rounded-md '
-  if (outlined) base += 'border-2 border-white border-opacity-50 hover:border-opacity-100 rounded-md '
+  if (outlined)
+    base +=
+      'border-2 border-white border-opacity-50 hover:border-opacity-100 rounded-md '
   if (disabled) base += 'opacity-20 cursor-not-allowed '
   if (contained && !disabled)
     base += 'shadow hover:shadow-xl hover:bg-primary-4 '
@@ -29,15 +33,20 @@ const Button = (props: Props) => {
     onClick,
     fullWidth = false,
     type = 'button',
+    active,
   } = props
 
   if (!show) return <></>
 
   if (href)
     return (
-      <Link to={href} className={styles(disabled, contained, outlined, className, fullWidth)}>
+      <NavLink
+        activeClassName={active}
+        to={href}
+        className={styles(disabled, contained, outlined, className, fullWidth)}
+      >
         {children}
-      </Link>
+      </NavLink>
     )
 
   return (
@@ -52,7 +61,6 @@ const Button = (props: Props) => {
   )
 }
 
-
 type Props = {
   href?: string
   children: any
@@ -65,8 +73,7 @@ type Props = {
   disabled?: boolean
   onClick?: () => void
   type?: 'submit' | 'reset' | 'button'
+  active?: string
 }
 
 export default Button
-
-

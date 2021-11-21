@@ -26,18 +26,15 @@ const LineContent = styled.span`
 `
 
 const SubmissionRow = props => {
-  const { time, problem, lang, code, status } = props
+  const { time, problem, lang, code, status, description } = props
 
   const statusColourMap: any = {
-    Accepted: ' bg-green-100 text-green-800 ',
     Pending: ' bg-yellow-100 text-black ',
-    rejected: ' bg-primary-2 text-white ',
-    retry: ' bg-primary-4 text-white ',
-    'Runtime Error (NZEC)': ' bg-primary-2 text-white ',
-    'Time Limit Exceeded': ' bg-primary-4 text-white ',
-
-    'Wrong Answer': ' bg-primary-2 text-white ',
-    'Compilation Error': ' bg-primary-2 text-white ',
+    AC: ' bg-green-100 text-green-800 ',
+    WA: ' bg-primary-2 text-white ',
+    RTE: ' bg-primary-2 text-white ',
+    TLE: ' bg-primary-4 text-white ',
+    CE: ' bg-primary-2 text-white ',
   }
 
   const [showCode, setShowCode] = useState(null)
@@ -69,6 +66,7 @@ const SubmissionRow = props => {
               statusColourMap[status] +
               ' rounded-full capitalize'
             }
+            title={description}
           >
             {status}
           </span>

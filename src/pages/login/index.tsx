@@ -20,7 +20,7 @@ const Login = () => {
   const [couldntLogin, setCouldntLogin] = useState<String | null>(null)
   const router = useHistory()
 
-  const [login] = useMutation(loginTeam)
+  const [login, { loading }] = useMutation(loginTeam)
 
   const onSubmit = credentials => {
     login({ variables: { credentials } }).then(async (response: any) => {
@@ -55,7 +55,7 @@ const Login = () => {
         {couldntLogin && <Error msg={couldntLogin} />}
 
         <br />
-        <FullButton type="submit" contained>
+        <FullButton type="submit" contained disabled={loading}>
           Login
         </FullButton>
       </form>

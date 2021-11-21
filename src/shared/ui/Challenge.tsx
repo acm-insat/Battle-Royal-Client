@@ -91,6 +91,7 @@ const Challenge = props => {
               >
                 {title}
               </span>
+              <Countdown key={timeLeft} date={timeLeft} renderer={renderer} />
               {secondstoend && (
                 <>
                   &nbsp;&nbsp;

@@ -30,16 +30,6 @@ const Submissions = props => {
 
   if (loading) return null
 
-  //   console.log(
-  //     submissions &&
-  //       [...submissions]
-  //         .sort((a, b) => b.createdAt - a.createdAt)
-  //         .map(({ createdAt, ...data }) => ({
-  //           data,
-  //           createdAt: new Date(Number(createdAt)),
-  //         }))
-  //   )
-
   return (
     <Card title="Submissions">
       <div className="mt-8">
@@ -83,6 +73,7 @@ const Submissions = props => {
                     lang={getLanguageById(sub.language_id)}
                     code={sub.source_code}
                     status={sub.response ? sub.response : 'Pending'}
+                    description={sub.responseDescription}
                   />
                 ))}
               </tbody>
