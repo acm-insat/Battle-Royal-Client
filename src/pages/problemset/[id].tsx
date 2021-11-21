@@ -40,18 +40,15 @@ const Problem = props => {
         </div>
         <div className="mb-20 markdown text-sm">
           <ReactMarkdown>{data?.problem.content}</ReactMarkdown>
-          {!data?.problem.ended &&
-            props.user &&
-            !props.user.unqualified &&
-            props.user.problemsSolved.indexOf(data?.problem.id) === -1 && (
-              <Button
-                onClick={() => setShowCodeArea(true)}
-                className="block float-right mt-10"
-                contained
-              >
-                Submit Your Solution
-              </Button>
-            )}
+          {!data?.problem.ended && props.user && !props.user.unqualified && (
+            <Button
+              onClick={() => setShowCodeArea(true)}
+              className="block float-right mt-10"
+              contained
+            >
+              Submit Your Solution
+            </Button>
+          )}
         </div>
       </Card>
       <Card title="">
@@ -81,6 +78,9 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
   const [code, setCode] = useState('')
 
   const [lang, setLang] = useState(54)
+
+  const [wait, setWait] = useState(false)
+
   const [fontSize, setFontSize] = useState(12)
 
   const [submit] = useMutation(submitSolution)
@@ -95,7 +95,9 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
   }
 
   const handleSubmit = async () => {
-    if (code !== '')
+    if (wait) return
+    setWait(true)
+    if (code !== '') {
       submit({
         variables: {
           submission: {
@@ -106,13 +108,18 @@ const Window = ({ relatedtoshowcodearea, problem }) => {
         },
       })
         .then(response => {
-          if (response.data.submitSolution === 'done')
+          if (response.data.submitSolution === 'done') {
             toast.success('Code Submitted Successfully')
-          else toast.error('Submission was unsuccessful')
+          } else toast.error('Submission was unsuccessful')
 
           setCode('')
+          setWait(false)
         })
-        .catch(() => toast.error('Submission was unsuccessful'))
+        .catch(() => {
+          toast.error('Submission was unsuccessful')
+          setWait(false)
+        })
+    }
   }
 
   return (

@@ -24,7 +24,7 @@ const Leaderboard = props => {
               name={team.name}
               points={team.score}
               unqualified={team.unqualified}
-              rounds={team.problemsSolved.length}
+              rounds={team.problemsSolved}
             />
           ))}
     </Card>
